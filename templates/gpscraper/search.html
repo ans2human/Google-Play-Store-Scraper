@@ -1,0 +1,57 @@
+{% extends 'gpscraper/base.html' %} {% block body %}
+<div class="container">
+    <br/>
+    <div class="row justify-content-center">
+        <div class="col-8 col-md-5 col-lg-4">
+
+            <form class="card card-sm" method="post" enctype="multipart/form-data">
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col">
+                        <i class="fas fa-search h4 text-body"></i>
+                    </div>
+
+                    <!--end of col-->
+                    <div class="col">
+
+                        {% csrf_token %} {{ form.as_p }}
+                    </div>
+                    &nbsp;
+                    <!--end of col-->
+                    <div class="col">
+
+                        <button class="btn btn-lg btn-success" type="submit">Search</button>
+                    </div>
+                    <!--end of col-->
+                </div>
+            </form>
+        </div>
+        <!--end of col-->
+    </div>
+</div>
+<br> {% if result %} Search Result :
+<br>
+<table class="table table-bordered">
+    <tr>
+        <th>S No</th>
+        <th>Name</th>
+        <th>ID/Number</th>
+        <th>Developer Name</th>
+        <th>Developer Email</th>
+        <th>Icon URL</th>
+    </tr>
+    {% for app in result %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>
+            <a href="/store/app/detail/{{ app.uid }}">{{ app.name}}</a>
+        </td>
+        <td>{{ app.uid }}</td>
+        <td>{{ app.dev_name}}</td>
+        <td>{{ app.dev_email}}</td>
+        <td>
+            <a href="{{ app.icon_url }}">Click here</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %} {% endblock %}

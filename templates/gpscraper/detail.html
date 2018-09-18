@@ -1,0 +1,25 @@
+{% extends 'gpscraper/base.html' %}
+{% block body %}
+<input type=button value="Go back" onClick="javascript:history.go(-1);">
+<br><br>
+{% if name %}
+<img src="{{ icon_url }}">
+<br><br>
+<b>Name:</b> <br>{{ name }}
+<br><br>
+<b>UID:</b> <br>{{ uid }}
+<br><br>
+<b>Developer Name:</b> <br>{{ dev_name }}
+<br><br>
+<b>Category:</b> <br>{{ category }}
+<br><br>
+<b>Developer Email:</b> <br>{{ dev_email }}
+<br><br>
+<b>Description:</b> <br>{{ description }}
+
+
+{% else %}
+    No data found.
+{% endif %}
+{% endblock %}
+
